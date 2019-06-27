@@ -17,7 +17,7 @@ url_sent = []
 
 def update_urls():
     url_arr.clear()
-    for i in range(0,20):
+    for i in range(0,10):
         for submission in top_vids:
             if submission.url not in url_sent:
                 url_arr.append(submission.url)
@@ -39,8 +39,7 @@ def send_vid():
         if(url_arr[i] is not None):
             dl(url_arr[i])
             vid = open('vid.mp4','rb')
-            if os.stat('vid.mp4').st_size != 0:
-                bot.send_video(chat_id ='@testingbottg',video = vid)
+            bot.send_video('@testingbottg',vid)
             vid.close
     
 
