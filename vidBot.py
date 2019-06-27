@@ -17,8 +17,9 @@ url_sent = []
 
 def update_urls():
     url_arr.clear()
-    for submission in top_vids:
-        if submission.url not in url_sent:
+    for i in range(0,20):
+        for submission in top_vids:
+            if submission.url not in url_sent:
                 url_arr.append(submission.url)
                 url_sent.append(submission.url)
                 print(url_arr[i])
