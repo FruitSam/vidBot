@@ -23,7 +23,7 @@ def update_urls():
         else:
             url_arr.append(submission.url)
             url_sent.append(submission.url)
-            print(url_arr[i])
+            print(url_arr)
     with open('sent.txt','wb') as fp:
         pickle.dump(url_sent, fp)
 
