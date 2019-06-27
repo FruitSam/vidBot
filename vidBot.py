@@ -28,11 +28,12 @@ ydl_opts = {
 def update_urls():
     url_arr.clear()
     for submission in top_vids:
-        if submission.url in url_sent:
+        if submission.media['reddit_media']['fallback_url'] in url_sent:
             pass
         else:
-            url_arr.append(submission.url)
-            url_sent.append(submission.url)
+            the_url = submission.media['reddit_media']['fallback_url']
+            url_arr.append(the_url)
+            url_sent.append(the_url)
             print(url_arr)
     with open('sent.txt','wb') as fp:
         pickle.dump(url_sent, fp)
@@ -41,7 +42,7 @@ def dl(url):
     f = open('vid.mp4', 'wb')
     #opener = build_opener(HTTPCookieProcessor())
     #response = opener.open(url, timeout=30)
-    f.write(ydl.download([url]))
+    f.write(urllib.request.urlopen(url).read())
     f.close
 
 
