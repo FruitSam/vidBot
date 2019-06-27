@@ -32,7 +32,7 @@ def update_urls():
 def dl(url):
     f = open('vid.mp4', 'wb')
     opener = build_opener(HTTPCookieProcessor())
-    response = opener.open(url, timeout=30).
+    response = opener.open(url, timeout=30)
     f.write(response)
     f.close
 
