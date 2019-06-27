@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import telebot
 import urllib.request
 import os
@@ -7,6 +8,7 @@ from flask import Flask, request
 import pickle
 import requests
 from urllib.request import build_opener, HTTPCookieProcessor, Request
+import youtube_dl
 
 bot_token = '877541643:AAEOULzC-cgyfYt6yftU6167oDQ1ZQvlCMQ'
 bot = telebot.TeleBot(token=bot_token)
@@ -16,6 +18,14 @@ top_vids = subreddit.top(limit = 10)
 url_arr = []
 app = Flask(__name__)
 url_sent = []
+
+ydl_opts = {
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp4',
+    }],
+}
 
 def update_urls():
     url_arr.clear()
@@ -31,9 +41,11 @@ def update_urls():
 
 def dl(url):
     f = open('vid.mp4', 'wb')
-    opener = build_opener(HTTPCookieProcessor())
-    response = opener.open(url, timeout=30)
-    f.write(response)
+    #opener = build_opener(HTTPCookieProcessor())
+    #response = opener.open(url, timeout=30)
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.dowload([url])
+    f.write(ydl_opts)
     f.close
 
 
