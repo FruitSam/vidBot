@@ -19,6 +19,9 @@ url_arr = []
 app = Flask(__name__)
 url_sent = []
 
+ydl_opts = {
+    'format': 'best',
+}
 
 def update_urls():
     url_arr.clear()
