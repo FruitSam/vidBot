@@ -37,11 +37,10 @@ def update_urls():
 
 def dl(url):
     f = open('vid.mp4', 'wb')
+    ydl = youtube_dl.YoutubeDL()
     #opener = build_opener(HTTPCookieProcessor())
     #response = opener.open(url, timeout=30)
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-    f.write(ydl_opts)
+    f.write(ydl.download[url])
     f.close
 
 
