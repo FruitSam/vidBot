@@ -5,6 +5,8 @@ import praw
 import threading
 from flask import Flask, request
 import pickle
+import requests
+from urllib.request import build_opener, HTTPCookieProcessor, Request
 
 bot_token = '877541643:AAEOULzC-cgyfYt6yftU6167oDQ1ZQvlCMQ'
 bot = telebot.TeleBot(token=bot_token)
@@ -29,7 +31,9 @@ def update_urls():
 
 def dl(url):
     f = open('vid.mp4', 'wb')
-    f.write(urllib.request.urlopen(url).read())
+    opener = build_opener(HTTPCookieProcessor())
+    response = opener.open(url, timeout=30).
+    f.write(response)
     f.close
 
 
