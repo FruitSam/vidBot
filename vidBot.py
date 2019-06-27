@@ -19,13 +19,6 @@ url_arr = []
 app = Flask(__name__)
 url_sent = []
 
-ydl_opts = {
-    'format': 'bestaudio/best',
-    'postprocessors': [{
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp4',
-    }],
-}
 
 def update_urls():
     url_arr.clear()
