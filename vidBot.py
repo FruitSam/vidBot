@@ -51,7 +51,7 @@ def update_urls():
 
 def dl(url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(song_url, download=True)
+        info_dict = ydl.extract_info(url, download=True)
 
 
 def send_vid(): 
