@@ -18,6 +18,8 @@ top_vids = subreddit.top(limit = 10)
 url_arr = []
 app = Flask(__name__)
 url_sent = []
+ydl_opts = {}
+ydl = youtube_dl.YoutubeDL(ydl_opts)
 
 ydl_opts = {
     'format': 'best',
@@ -37,10 +39,9 @@ def update_urls():
 
 def dl(url):
     f = open('vid.mp4', 'wb')
-    ydl = youtube_dl.YoutubeDL()
     #opener = build_opener(HTTPCookieProcessor())
     #response = opener.open(url, timeout=30)
-    f.write(ydl.download[url])
+    f.write(ydl.download([url]))
     f.close
 
 
