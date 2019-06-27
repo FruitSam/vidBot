@@ -18,20 +18,31 @@ top_vids = subreddit.top(limit = 10)
 url_arr = []
 app = Flask(__name__)
 url_sent = []
-ydl_opts = {}
+outtmpl = 'vid.mp4'
+ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': outtmpl,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        },
+            {'key': 'FFmpegMetadata'},
+        ],
+
+    }
+
 ydl = youtube_dl.YoutubeDL(ydl_opts)
 
-ydl_opts = {
-    'format': 'best',
-}
+
 
 def update_urls():
     url_arr.clear()
     for submission in top_vids:
-        if submission.media['reddit_media']['fallback_url'] in url_sent:
+        if submission.url in url_sent:
             pass
         else:
-            the_url = submission.media['reddit_media']['fallback_url']
+            the_url = submission.url
             url_arr.append(the_url)
             url_sent.append(the_url)
             print(url_arr)
@@ -39,11 +50,8 @@ def update_urls():
         pickle.dump(url_sent, fp)
 
 def dl(url):
-    f = open('vid.mp4', 'wb')
-    #opener = build_opener(HTTPCookieProcessor())
-    #response = opener.open(url, timeout=30)
-    f.write(urllib.request.urlopen(url).read())
-    f.close
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(song_url, download=True)
 
 
 def send_vid(): 
