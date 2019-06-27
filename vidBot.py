@@ -16,8 +16,6 @@ app = Flask(__name__)
 url_sent = []
 
 def update_urls():
-    with open('sent.txt','rb') as fp:
-        url_sent = pickle.load(fp)
     url_arr.clear()
     for i in range(0,20):
         for submission in top_vids:
