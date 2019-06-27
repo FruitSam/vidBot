@@ -17,14 +17,13 @@ url_sent = []
 
 def update_urls():
     url_arr.clear()
-    for i in range(0,20):
-        for submission in top_vids:
-            if submission.url in url_sent:
-                pass
-            else:
-                url_arr.append(submission.url)
-                url_sent.append(submission.url)
-                print(url_arr[i])
+    for submission in top_vids:
+        if submission.url in url_sent:
+            pass
+        else:
+            url_arr.append(submission.url)
+            url_sent.append(submission.url)
+            print(url_arr[i])
     with open('sent.txt','wb') as fp:
         pickle.dump(url_sent, fp)
 
