@@ -10,16 +10,15 @@ bot_token = '877541643:AAEOULzC-cgyfYt6yftU6167oDQ1ZQvlCMQ'
 bot = telebot.TeleBot(token=bot_token)
 reddit = praw.Reddit(client_id= 'CYJNh3ecbQhxzQ', client_secret= 'du58jAIgpE9lbfXoLoJlkEUnl4Y', username= 'tgdankbot', password= 'Kutaluta@3crest', user_agent= 't5' )
 subreddit = reddit.subreddit('dankvideos')
-top_vids = subreddit.top()
+top_vids = subreddit.top(limit = 10)
 url_arr = []
 app = Flask(__name__)
 url_sent = []
 
 def update_urls():
     url_arr.clear()
-    for i in range(0,10):
-        for submission in top_vids:
-            if submission.url not in url_sent:
+    for submission in top_vids:
+        if submission.url not in url_sent:
                 url_arr.append(submission.url)
                 url_sent.append(submission.url)
                 print(url_arr[i])
