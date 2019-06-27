@@ -44,7 +44,7 @@ def dl(url):
     #opener = build_opener(HTTPCookieProcessor())
     #response = opener.open(url, timeout=30)
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.dowload([url])
+        ydl.download([url])
     f.write(ydl_opts)
     f.close
 
