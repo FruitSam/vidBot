@@ -1,1 +1,1 @@
-web: gunicorn vidBot:server
+web: gunicorn vidBot:app
