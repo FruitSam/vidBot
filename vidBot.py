@@ -14,7 +14,7 @@ import glob
 
 
 
-bot_token = '877541643:AAEOULzC-cgyfYt6yftU6167oDQ1ZQvlCMQ'
+bot_token = 'your_bot_token'
 bot = telebot.TeleBot(token=bot_token)
 reddit = praw.Reddit(client_id= 'CYJNh3ecbQhxzQ', client_secret= 'du58jAIgpE9lbfXoLoJlkEUnl4Y', username= 'tgdankbot', password= 'Kutaluta@3crest', user_agent= 't5' )
 subreddit = reddit.subreddit('dankvideos')
@@ -63,7 +63,7 @@ def send_vid():
     for i in range(0,countr):
         vid = open(my_list[i],'rb')
         print('sent')
-        bot.send_video('@memesandautism',vid)
+        bot.send_video('channel/chat_id',vid)
         vid.close
     
 
